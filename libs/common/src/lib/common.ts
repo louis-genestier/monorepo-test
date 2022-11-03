@@ -1,3 +1,1 @@
-export function common(): string {
-  return 'common';
-}
+export const add = (a: number, b: number) => a + b 

@@ -1,7 +1,7 @@
-import { common } from './common';
+import { add } from './common';
 
-describe('common', () => {
-  it('should work', () => {
-    expect(common()).toEqual('common');
+describe(']', () => {
+  it('2 + 2 should returns 4', () => {
+    expect(add(2, 2)).toEqual(4);
   });
 });
