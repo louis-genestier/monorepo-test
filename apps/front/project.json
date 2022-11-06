@@ -4,6 +4,12 @@
   "sourceRoot": "apps/front/src",
   "projectType": "application",
   "targets": {
+    "create-image": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker build -f apps/front/Dockerfile . -t front"
+      }
+    },
     "build": {
       "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],

@@ -5,16 +5,22 @@ jobs:
   main:
     docker:
       - image: cimg/node:lts-browsers
+        auth:
+          username: lgenestier
+          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
       - run: npm ci
       - nx/set-shas
+      - setup_remote_docker:
+          version: 20.10.14
 
       - run: npx nx workspace-lint
       - run: npx nx format:check
       - run: npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=lint --parallel=3
       - run: npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=test --parallel=3 --ci --code-coverage
       - run: npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=build --parallel=3
+      - run: npx nx affected --base=$NX_BASE --head=$NX_HEAD --target=create-image --parallel=3
 workflows:
   build:
     jobs:
