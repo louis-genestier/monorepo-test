@@ -4,6 +4,18 @@
   "sourceRoot": "apps/front/src",
   "projectType": "application",
   "targets": {
+    "create-image": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker build -f apps/front/Dockerfile . -t lgenestier/front:{args.version}"
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker push lgenestier/front:{args.version}"
+      }
+    },
     "build": {
       "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],
