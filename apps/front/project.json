@@ -7,7 +7,13 @@
     "create-image": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "docker build -f apps/front/Dockerfile . -t front"
+        "command": "docker build -f apps/front/Dockerfile . -t lgenestier/front:{args.version}"
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker push lgenestier/front:{args.version}"
       }
     },
     "build": {
